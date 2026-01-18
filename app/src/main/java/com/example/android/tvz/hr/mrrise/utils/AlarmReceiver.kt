@@ -8,6 +8,7 @@ import com.example.android.tvz.hr.mrrise.ui.puzzle.AlarmRingingActivity
 class AlarmReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
+
         val alarmId = intent.getIntExtra("ALARM_ID", -1)
         val label = intent.getStringExtra("ALARM_LABEL") ?: "Alarm"
         val puzzleType = intent.getStringExtra("PUZZLE_TYPE") ?: "SIMON_SAYS"
@@ -23,4 +24,5 @@ class AlarmReceiver : BroadcastReceiver() {
 
         context.startActivity(alarmIntent)
     }
+
 }

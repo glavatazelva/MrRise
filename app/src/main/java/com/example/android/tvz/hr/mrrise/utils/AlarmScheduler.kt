@@ -91,6 +91,16 @@ class AlarmScheduler(private val context: Context) {
 
             Log.d("AlarmScheduler", "Scheduled for day $dayOfWeek at: ${calendar.time}")
         }
+
+        /*
+        Test postavlja li se alarm kako treba
+        android.util.Log.d("AlarmScheduler", "=== ALARM SCHEDULED ===")
+        android.util.Log.d("AlarmScheduler", "Alarm ID: ${alarm.id}")
+        android.util.Log.d("AlarmScheduler", "Time: ${alarm.hour}:${alarm.minute}")
+        android.util.Log.d("AlarmScheduler", "Enabled: ${alarm.isEnabled}")
+        android.util.Log.d("AlarmScheduler", "Days selected: ${if (selectedDays.isEmpty()) "NONE (one-time)" else selectedDays.size}")
+        */
+
     }
 
     fun cancelAlarm(alarm: AlarmEntity) {
@@ -107,4 +117,5 @@ class AlarmScheduler(private val context: Context) {
             alarmManager.cancel(pendingIntent)
         }
     }
+
 }
