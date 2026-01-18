@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MrRise</string>
+
+    <string name="no_alarms">No alarms yet.\nTap + to create one!</string>
+    <string name="add_alarm">Add Alarm</string>
+
+    <string name="alarm_time">Alarm Time</string>
+    <string name="label">Label</string>
+    <string name="label_hint">e.g., Morning Workout</string>
+    <string name="repeat">Repeat</string>
+    <string name="puzzle_type">Puzzle Type</string>
+    <string name="save_alarm">Save Alarm</string>
+    <string name="alarm_saved">Alarm saved!</string>
+    <string name="update_alarm">Update Alarm</string>
+    <string name="alarm_updated">Alarm updated!</string>
+
+    <string name="alarm_sound">Alarm Sound</string>
+    <string name="preview_sound">Preview Sound</string>
+
+    <string name="sound_default">Default Alarm</string>
+    <string name="sound_vibrate">Vibration Only</string>
+    <string name="sound_ringtone">Phone Ringtone</string>
+
+    <string name="monday">Mon</string>
+    <string name="tuesday">Tue</string>
+    <string name="wednesday">Wed</string>
+    <string name="thursday">Thu</string>
+    <string name="friday">Fri</string>
+    <string name="saturday">Sat</string>
+    <string name="sunday">Sun</string>
+    <string name="every_day">Every day</string>
+    <string name="one_time">One time</string>
+
+    <string name="puzzle_simon">🧩 Simon Says (Color Pattern)</string>
+    <string name="puzzle_math">🔢 Math Challenge (Solve X &amp; Y)</string>
+    <string name="puzzle_qr">📷 QR Code Scan (Get Out of Bed)</string>
+
+    <string name="solve_puzzle">Solve the puzzle to dismiss alarm</string>
+
+    <string name="repeat_pattern">Repeat the color pattern</string>
+    <string name="round">Round %1$d/%2$d</string>
+    <string name="watch_pattern">Watch the pattern...</string>
+    <string name="your_turn">Your turn! Repeat the pattern</string>
+    <string name="wrong_try_again">Wrong! Try again...</string>
+    <string name="perfect_dismissed">Perfect! Alarm dismissed! ✅</string>
+    <string name="correct_next">Correct! Next round...</string>
+
+    <string name="solve_xy">Solve for X and Y</string>
+    <string name="submit_answer">Submit Answer</string>
+    <string name="enter_both_values">Please enter both values</string>
+    <string name="correct_dismissed">✅ Correct! Alarm dismissed!</string>
+    <string name="wrong_again">❌ Wrong! Try again...</string>
+
+    <string name="scan_qr_dismiss">Scan QR Code to Dismiss</string>
+    <string name="open_camera">OPEN CAMERA</string>
+    <string name="qr_scanned">✅ QR Code scanned! Alarm dismissed!</string>
+    <string name="scan_cancelled">Scan cancelled. Try again!</string>
+    <string name="camera_permission_required">Camera permission is required</string>
+
+    <string name="alarm_deleted">Alarm deleted</string>
+
+    <string name="red">RED</string>
+    <string name="blue">BLUE</string>
+    <string name="green">GREEN</string>
+    <string name="yellow">YELLOW</string>
+</resources>

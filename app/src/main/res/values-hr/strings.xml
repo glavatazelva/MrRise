@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MrRise</string>
+
+    <string name="no_alarms">Nema alarma.\nDodirni + za novi!</string>
+    <string name="add_alarm">Dodaj alarm</string>
+
+    <string name="alarm_time">Vrijeme alarma</string>
+    <string name="label">Oznaka</string>
+    <string name="label_hint">npr. Jutarnja vježba</string>
+    <string name="repeat">Ponavljanje</string>
+    <string name="puzzle_type">Vrsta zagonetke</string>
+    <string name="save_alarm">Spremi alarm</string>
+    <string name="alarm_saved">Alarm spremljen!</string>
+    <string name="update_alarm">Ažuriraj alarm</string>
+    <string name="alarm_updated">Alarm ažuriran!</string>
+
+    <string name="alarm_sound">Zvuk alarma</string>
+    <string name="preview_sound">Pregled zvuka</string>
+
+    <string name="sound_default">Zadani alarm</string>
+    <string name="sound_vibrate">Samo vibracija</string>
+    <string name="sound_ringtone">Melodija telefona</string>
+
+    <string name="monday">Pon</string>
+    <string name="tuesday">Uto</string>
+    <string name="wednesday">Sri</string>
+    <string name="thursday">Čet</string>
+    <string name="friday">Pet</string>
+    <string name="saturday">Sub</string>
+    <string name="sunday">Ned</string>
+    <string name="every_day">Svaki dan</string>
+    <string name="one_time">Danas</string>
+
+    <string name="puzzle_simon">🧩 Simon Kaže (Uzorak boja)</string>
+    <string name="puzzle_math">🔢 Matematički izazov (Riješi X i Y)</string>
+    <string name="puzzle_qr">📷 QR kod (Ustani iz kreveta)</string>
+
+    <string name="solve_puzzle">Riješi zagonetku da isključiš alarm</string>
+
+    <string name="repeat_pattern">Ponovi uzorak boja</string>
+    <string name="round">Runda %1$d/%2$d</string>
+    <string name="watch_pattern">Gledaj uzorak...</string>
+    <string name="your_turn">Tvoj red! Ponovi uzorak</string>
+    <string name="wrong_try_again">Krivo! Pokušaj ponovno...</string>
+    <string name="perfect_dismissed">Savršeno! Alarm isključen! ✅</string>
+    <string name="correct_next">Točno! Sljedeća runda...</string>
+
+    <string name="solve_xy">Riješi za X i Y</string>
+    <string name="submit_answer">Pošalji odgovor</string>
+    <string name="enter_both_values">Molimo unesite obje vrijednosti</string>
+    <string name="correct_dismissed">✅ Točno! Alarm isključen!</string>
+    <string name="wrong_again">❌ Krivo! Pokušaj ponovno...</string>
+
+    <string name="scan_qr_dismiss">Skeniraj QR kod</string>
+    <string name="open_camera">OTVORI KAMERU</string>
+    <string name="qr_scanned">✅ QR kod skeniran! Alarm isključen!</string>
+    <string name="scan_cancelled">Skeniranje otkazano. Pokušaj ponovno!</string>
+    <string name="camera_permission_required">Potrebna je dozvola za kameru</string>
+
+    <string name="alarm_deleted">Alarm obrisan</string>
+
+    <string name="red">CRVENA</string>
+    <string name="blue">PLAVA</string>
+    <string name="green">ZELENA</string>
+    <string name="yellow">ŽUTA</string>
+</resources>

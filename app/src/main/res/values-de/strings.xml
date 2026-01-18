@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MrRise</string>
+
+    <string name="no_alarms">Keine Alarme.\nTippe + für neuen!</string>
+    <string name="add_alarm">Alarm hinzufügen</string>
+
+    <string name="alarm_time">Alarmzeit</string>
+    <string name="label">Bezeichnung</string>
+    <string name="label_hint">z.B. Morgentraining</string>
+    <string name="repeat">Wiederholen</string>
+    <string name="puzzle_type">Rätseltyp</string>
+    <string name="save_alarm">Alarm speichern</string>
+    <string name="alarm_saved">Alarm gespeichert!</string>
+    <string name="update_alarm">Alarm aktualisieren</string>
+    <string name="alarm_updated">Alarm aktualisiert!</string>
+
+    <string name="alarm_sound">Alarmton</string>
+    <string name="preview_sound">Ton Vorschau</string>
+
+    <string name="sound_default">Standard Alarm</string>
+    <string name="sound_vibrate">Nur Vibration</string>
+    <string name="sound_ringtone">Telefonklingelton</string>
+
+    <string name="monday">Mo</string>
+    <string name="tuesday">Di</string>
+    <string name="wednesday">Mi</string>
+    <string name="thursday">Do</string>
+    <string name="friday">Fr</string>
+    <string name="saturday">Sa</string>
+    <string name="sunday">So</string>
+    <string name="every_day">Jeden Tag</string>
+    <string name="one_time">Einmalig</string>
+
+    <string name="puzzle_simon">🧩 Simon sagt (Farbmuster)</string>
+    <string name="puzzle_math">🔢 Mathe-Herausforderung (Löse X und Y)</string>
+    <string name="puzzle_qr">📷 QR-Code scannen (Aus dem Bett)</string>
+
+    <string name="solve_puzzle">Löse das Rätsel um den Alarm auszuschalten</string>
+
+    <string name="repeat_pattern">Wiederhole das Farbmuster</string>
+    <string name="round">Runde %1$d/%2$d</string>
+    <string name="watch_pattern">Beobachte das Muster...</string>
+    <string name="your_turn">Du bist dran! Wiederhole das Muster</string>
+    <string name="wrong_try_again">Falsch! Versuche es erneut...</string>
+    <string name="perfect_dismissed">Perfekt! Alarm ausgeschaltet! ✅</string>
+    <string name="correct_next">Richtig! Nächste Runde...</string>
+
+    <string name="solve_xy">Löse für X und Y</string>
+    <string name="submit_answer">Antwort senden</string>
+    <string name="enter_both_values">Bitte gib beide Werte ein</string>
+    <string name="correct_dismissed">✅ Richtig! Alarm ausgeschaltet!</string>
+    <string name="wrong_again">❌ Falsch! Versuche es erneut...</string>
+
+    <string name="scan_qr_dismiss">QR-Code scannen</string>
+    <string name="open_camera">KAMERA ÖFFNEN</string>
+    <string name="qr_scanned">✅ QR-Code gescannt! Alarm ausgeschaltet!</string>
+    <string name="scan_cancelled">Scan abgebrochen. Versuche es erneut!</string>
+    <string name="camera_permission_required">Kameraberechtigung erforderlich</string>
+
+    <string name="alarm_deleted">Alarm gelöscht</string>
+
+    <string name="red">ROT</string>
+    <string name="blue">BLAU</string>
+    <string name="green">GRÜN</string>
+    <string name="yellow">GELB</string>
+</resources>
