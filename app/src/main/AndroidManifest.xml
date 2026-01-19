@@ -10,8 +10,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
     <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SYSTEM_EXEMPTED" />
+
 
     <uses-feature android:name="android.hardware.camera" android:required="false" />
 
@@ -47,6 +46,7 @@
             android:excludeFromRecents="true"
             android:launchMode="singleTask" />
 
+
         <receiver
             android:name=".utils.AlarmReceiver"
             android:enabled="true"
@@ -55,12 +55,6 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-
-        <service
-            android:name=".utils.AlarmForegroundService"
-            android:enabled="true"
-            android:exported="false"
-            android:foregroundServiceType="systemExempted" />
 
     </application>
 
