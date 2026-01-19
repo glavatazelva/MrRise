@@ -1,6 +1,12 @@
 package com.example.android.tvz.hr.mrrise
 
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.os.PowerManager
+import android.provider.Settings
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +16,7 @@ import com.example.android.tvz.hr.mrrise.databinding.ActivityMainBinding
 import com.example.android.tvz.hr.mrrise.ui.alarms.AlarmAdapter
 import com.example.android.tvz.hr.mrrise.ui.alarms.AlarmViewModel
 import com.example.android.tvz.hr.mrrise.utils.SwipeToDeleteCallback
+import com.example.android.tvz.hr.mrrise.utils.AlarmForegroundService
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,8 +27,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        AlarmForegroundService.start(this)
+
 
         viewModel = ViewModelProvider(this)[AlarmViewModel::class.java]
 
