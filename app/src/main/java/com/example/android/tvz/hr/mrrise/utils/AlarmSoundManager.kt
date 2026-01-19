@@ -15,7 +15,6 @@ class AlarmSoundManager(private val context: Context) {
     private var mediaPlayer: MediaPlayer? = null
     private var vibrator: Vibrator? = null
 
-    @RequiresApi(Build.VERSION_CODES.O)
     fun startAlarmSound(soundType: String = "DEFAULT") {
         android.util.Log.d("AlarmSoundManager", "Starting alarm with soundType: $soundType")
 
@@ -49,7 +48,9 @@ class AlarmSoundManager(private val context: Context) {
                 prepare()
                 start()
             }
+            android.util.Log.d("AlarmSoundManager", "Sound started successfully")
         } catch (e: Exception) {
+            android.util.Log.e("AlarmSoundManager", "Error starting sound: ${e.message}")
             e.printStackTrace()
         }
     }

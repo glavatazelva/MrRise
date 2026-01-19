@@ -43,6 +43,7 @@ class AddAlarmActivity : AppCompatActivity() {
         binding.btnSave.setOnClickListener {
             saveAlarm()
         }
+        checkExactAlarmPermission()
     }
 
     private fun loadAlarmData() {
@@ -255,6 +256,21 @@ class AddAlarmActivity : AppCompatActivity() {
 
         finish()
     }
+
+    private fun checkExactAlarmPermission() {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+            val alarmManager = getSystemService(android.app.AlarmManager::class.java)
+            if (!alarmManager.canScheduleExactAlarms()) {
+                val intent = android.content.Intent(
+                    android.provider.Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM,
+                    android.net.Uri.parse("package:$packageName")
+                )
+                startActivity(intent)
+            }
+        }
+    }
+
+
     override fun onDestroy() {
         super.onDestroy()
         try {

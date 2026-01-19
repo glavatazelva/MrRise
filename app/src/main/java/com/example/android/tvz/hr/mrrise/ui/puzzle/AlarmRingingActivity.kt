@@ -1,5 +1,6 @@
 package com.example.android.tvz.hr.mrrise.ui.puzzle
 
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.view.WindowManager
@@ -26,19 +27,27 @@ class AlarmRingingActivity : AppCompatActivity() {
     private var alarmSound: String = "DEFAULT"
 
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityAlarmRingingBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        // NUCLEAR OPTION - ALL FLAGS
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
+            setShowWhenLocked(true)
+            setTurnScreenOn(true)
+            val keyguardManager = getSystemService(Context.KEYGUARD_SERVICE) as android.app.KeyguardManager
+            keyguardManager.requestDismissKeyguard(this, null)
+        }
 
         window.addFlags(
-            WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON or
+            WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED or
+                    WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON or
+                    WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON or
                     WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD or
-                    WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED or
-                    WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
+                    WindowManager.LayoutParams.FLAG_ALLOW_LOCK_WHILE_SCREEN_ON
         )
+
+        binding = ActivityAlarmRingingBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         alarmId = intent.getIntExtra("ALARM_ID", -1)
         val alarmLabel = intent.getStringExtra("ALARM_LABEL") ?: "Alarm"
@@ -55,6 +64,7 @@ class AlarmRingingActivity : AppCompatActivity() {
 
         loadPuzzle()
     }
+
     private fun loadPuzzle() {
         when (puzzleType) {
             "SIMON_SAYS" -> {
@@ -78,6 +88,7 @@ class AlarmRingingActivity : AppCompatActivity() {
         }
 
     }
+
 
     fun dismissAlarm() {
 

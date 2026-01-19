@@ -8,12 +8,20 @@ import android.util.Log
 import com.example.android.tvz.hr.mrrise.data.database.AlarmEntity
 import java.util.*
 
+
 class AlarmScheduler(private val context: Context) {
 
     private val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
+
     fun scheduleAlarm(alarm: AlarmEntity) {
         if (!alarm.isEnabled) return
+        Log.d("AlarmScheduler", "========================================")
+        Log.d("AlarmScheduler", "SCHEDULING ALARM - ID: ${alarm.id}")
+        Log.d("AlarmScheduler", "Time: ${alarm.hour}:${alarm.minute}")
+        Log.d("AlarmScheduler", "Sound: ${alarm.alarmSound}")
+        Log.d("AlarmScheduler", "Puzzle: ${alarm.puzzleType}")
+        Log.d("AlarmScheduler", "========================================")
 
         Log.d("AlarmScheduler", "Scheduling alarm: ${alarm.label} for ${alarm.hour}:${alarm.minute}")
 
@@ -52,9 +60,8 @@ class AlarmScheduler(private val context: Context) {
                 PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
             )
 
-            alarmManager.setExactAndAllowWhileIdle(
-                AlarmManager.RTC_WAKEUP,
-                calendar.timeInMillis,
+            alarmManager.setAlarmClock(
+                AlarmManager.AlarmClockInfo(calendar.timeInMillis, pendingIntent),
                 pendingIntent
             )
 
@@ -83,25 +90,16 @@ class AlarmScheduler(private val context: Context) {
                 PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
             )
 
-            alarmManager.setExactAndAllowWhileIdle(
-                AlarmManager.RTC_WAKEUP,
-                calendar.timeInMillis,
+            alarmManager.setAlarmClock(
+                AlarmManager.AlarmClockInfo(calendar.timeInMillis, pendingIntent),
                 pendingIntent
             )
 
             Log.d("AlarmScheduler", "Scheduled for day $dayOfWeek at: ${calendar.time}")
         }
-
-        /*
-        Test postavlja li se alarm kako treba
-        android.util.Log.d("AlarmScheduler", "=== ALARM SCHEDULED ===")
-        android.util.Log.d("AlarmScheduler", "Alarm ID: ${alarm.id}")
-        android.util.Log.d("AlarmScheduler", "Time: ${alarm.hour}:${alarm.minute}")
-        android.util.Log.d("AlarmScheduler", "Enabled: ${alarm.isEnabled}")
-        android.util.Log.d("AlarmScheduler", "Days selected: ${if (selectedDays.isEmpty()) "NONE (one-time)" else selectedDays.size}")
-        */
-
     }
+
+
 
     fun cancelAlarm(alarm: AlarmEntity) {
         val intent = Intent(context, AlarmReceiver::class.java)
