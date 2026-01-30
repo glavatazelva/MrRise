@@ -1,5 +1,6 @@
 package com.example.android.tvz.hr.mrrise
 
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -13,6 +14,13 @@ import com.example.android.tvz.hr.mrrise.utils.SwipeToDeleteCallback
 
 class MainActivity : AppCompatActivity() {
 
+    private val notificationPermissionLauncher = registerForActivityResult(
+        androidx.activity.result.contract.ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        if (!isGranted) {
+            Toast.makeText(this, "Notification permission required for alarms", Toast.LENGTH_LONG).show()
+        }
+    }
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: AlarmViewModel
     private lateinit var adapter: AlarmAdapter
@@ -24,6 +32,12 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS) != android.content.pm.PackageManager.PERMISSION_GRANTED) {
+                notificationPermissionLauncher.launch(android.Manifest.permission.POST_NOTIFICATIONS)
+            }
+        }
 
         //AlarmForegroundService.start(this)
 
