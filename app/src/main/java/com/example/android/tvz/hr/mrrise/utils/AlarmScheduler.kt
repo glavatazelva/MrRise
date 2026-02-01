@@ -16,6 +16,8 @@ class AlarmScheduler(private val context: Context) {
 
     fun scheduleAlarm(alarm: AlarmEntity) {
         if (!alarm.isEnabled) return
+
+        //izgenerirani logovi da mi je lakse debuganje
         Log.d("AlarmScheduler", "========================================")
         Log.d("AlarmScheduler", "SCHEDULING ALARM - ID: ${alarm.id}")
         Log.d("AlarmScheduler", "Time: ${alarm.hour}:${alarm.minute}")
@@ -65,7 +67,6 @@ class AlarmScheduler(private val context: Context) {
                 pendingIntent
             )
 
-            Log.d("AlarmScheduler", "Scheduled one-time alarm for: ${calendar.time}")
             return
         }
 
@@ -95,7 +96,6 @@ class AlarmScheduler(private val context: Context) {
                 pendingIntent
             )
 
-            Log.d("AlarmScheduler", "Scheduled for day $dayOfWeek at: ${calendar.time}")
         }
     }
 

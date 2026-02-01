@@ -18,6 +18,9 @@ class AlarmReceiver : BroadcastReceiver() {
     companion object {
         private const val CHANNEL_ID = "alarm_channel"
         private const val NOTIFICATION_ID_BASE = 1000
+
+        //postavit globalno tako da ne postoji sansa da ga ista ugasi
+        var activeSoundManager: AlarmSoundManager? = null
     }
 
     override fun onReceive(context: Context, intent: Intent) {
@@ -38,8 +41,9 @@ class AlarmReceiver : BroadcastReceiver() {
         val alarmSound = intent.getStringExtra("ALARM_SOUND") ?: "DEFAULT"
 
         Log.d("AlarmReceiver", "Showing full-screen notification - ID: $alarmId, Sound: $alarmSound")
-        val soundManager = AlarmSoundManager(context)
-        soundManager.startAlarmSound(alarmSound)
+
+        activeSoundManager = AlarmSoundManager(context.applicationContext)
+        activeSoundManager?.startAlarmSound(alarmSound)
 
         createNotificationChannel(context)
         showFullScreenNotification(context, alarmId, label, puzzleType, alarmSound)
@@ -66,8 +70,6 @@ class AlarmReceiver : BroadcastReceiver() {
             val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
         }
-        // Start playing sound
-
     }
 
     private fun showFullScreenNotification(
@@ -78,7 +80,9 @@ class AlarmReceiver : BroadcastReceiver() {
         alarmSound: String
     ) {
         val fullScreenIntent = Intent(context, AlarmRingingActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or
+                    Intent.FLAG_ACTIVITY_CLEAR_TOP or
+                    Intent.FLAG_ACTIVITY_NO_USER_ACTION)
             putExtra("ALARM_ID", alarmId)
             putExtra("ALARM_LABEL", label)
             putExtra("PUZZLE_TYPE", puzzleType)
@@ -99,9 +103,10 @@ class AlarmReceiver : BroadcastReceiver() {
             .setPriority(NotificationCompat.PRIORITY_MAX)
             .setCategory(NotificationCompat.CATEGORY_ALARM)
             .setFullScreenIntent(fullScreenPendingIntent, true)
-           // .setContentIntent(fullScreenPendingIntent)
+            .setContentIntent(fullScreenPendingIntent)
             .setAutoCancel(true)
             .setOngoing(true)
+            .setVibrate(longArrayOf(0, 1000, 500, 1000, 500))
 
         val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.notify(NOTIFICATION_ID_BASE + alarmId, notificationBuilder.build())

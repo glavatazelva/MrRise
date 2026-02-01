@@ -69,7 +69,7 @@ class QRCodePuzzle(
             setDesiredBarcodeFormats(ScanOptions.QR_CODE)
             setPrompt(view.context.getString(R.string.scan_qr_dismiss))
             setBeepEnabled(true)
-            setOrientationLocked(true)  // ← Changed to true
+            setOrientationLocked(true)
         }
         barcodeLauncher.launch(options)
     }

@@ -79,7 +79,7 @@ class MathPuzzle(
         }
 
         if (userX == correctX && userY == correctY) {
-            // Correct!
+
             binding.tvStatus.text = binding.root.context.getString(R.string.correct_dismissed)
             binding.tvStatus.setTextColor(Color.parseColor("#2ECC71"))
             binding.btnSubmit.isEnabled = false

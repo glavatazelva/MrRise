@@ -48,9 +48,7 @@ class AlarmSoundManager(private val context: Context) {
                 prepare()
                 start()
             }
-            android.util.Log.d("AlarmSoundManager", "Sound started successfully")
         } catch (e: Exception) {
-            android.util.Log.e("AlarmSoundManager", "Error starting sound: ${e.message}")
             e.printStackTrace()
         }
     }
@@ -59,17 +57,26 @@ class AlarmSoundManager(private val context: Context) {
         try {
             vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 
-            val pattern = longArrayOf(0, 1000, 500, 1000, 500)
+            if (vibrator == null || !vibrator!!.hasVibrator()) {
+                return
+            }
+
+            val pattern = longArrayOf(0, 1000, 500, 1000, 500, 1000, 500, 1000, 500)
 
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
                 vibrator?.vibrate(
-                    VibrationEffect.createWaveform(pattern, 0)
+                    VibrationEffect.createWaveform(pattern, 0),
+                    AudioAttributes.Builder()
+                        .setUsage(AudioAttributes.USAGE_ALARM)
+                        .build()
                 )
             } else {
                 @Suppress("DEPRECATION")
                 vibrator?.vibrate(pattern, 0)
             }
+
         } catch (e: Exception) {
+            android.util.Log.e("AlarmSoundManager", "Vibration error: ${e.message}")
             e.printStackTrace()
         }
     }

@@ -9,6 +9,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.android.tvz.hr.mrrise.R
 import com.example.android.tvz.hr.mrrise.databinding.ActivityAlarmRingingBinding
+import com.example.android.tvz.hr.mrrise.utils.AlarmReceiver
 import com.example.android.tvz.hr.mrrise.utils.AlarmSoundManager
 
 import java.text.SimpleDateFormat
@@ -31,7 +32,6 @@ class AlarmRingingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // NUCLEAR OPTION - ALL FLAGS
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
             setShowWhenLocked(true)
             setTurnScreenOn(true)
@@ -55,10 +55,7 @@ class AlarmRingingActivity : AppCompatActivity() {
         puzzleType = intent.getStringExtra("PUZZLE_TYPE") ?: "SIMON_SAYS"
         alarmSound = intent.getStringExtra("ALARM_SOUND") ?: "DEFAULT"
 
-        /*
         soundManager = AlarmSoundManager(this)
-        soundManager.startAlarmSound(alarmSound)
-        */
 
         binding.tvAlarmLabel.text = alarmLabel
 
@@ -66,6 +63,32 @@ class AlarmRingingActivity : AppCompatActivity() {
         binding.tvCurrentTime.text = currentTime
 
         loadPuzzle()
+    }
+
+    fun dismissAlarm() {
+
+        AlarmReceiver.activeSoundManager?.stopAlarmSound()
+        AlarmReceiver.activeSoundManager = null
+
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.cancel(1000 + alarmId)
+
+        if (alarmId != -1) {
+            kotlinx.coroutines.CoroutineScope(kotlinx.coroutines.Dispatchers.IO).launch {
+                val database = com.example.android.tvz.hr.mrrise.data.database.AlarmDatabase.getDatabase(this@AlarmRingingActivity)
+                val alarm = database.alarmDao().getAlarmById(alarmId)
+
+                if (alarm != null) {
+                    val disabledAlarm = alarm.copy(isEnabled = false)
+                    database.alarmDao().updateAlarm(disabledAlarm)
+
+                    val scheduler = com.example.android.tvz.hr.mrrise.utils.AlarmScheduler(this@AlarmRingingActivity)
+                    scheduler.cancelAlarm(disabledAlarm)
+                }
+            }
+        }
+
+        finish()
     }
 
     private fun loadPuzzle() {
@@ -90,32 +113,6 @@ class AlarmRingingActivity : AppCompatActivity() {
             }
         }
 
-    }
-
-
-    fun dismissAlarm() {
-
-        soundManager.stopAlarmSound()
-
-        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        notificationManager.cancel(1000 + alarmId)
-
-        if (alarmId != -1) {
-            kotlinx.coroutines.CoroutineScope(kotlinx.coroutines.Dispatchers.IO).launch {
-                val database = com.example.android.tvz.hr.mrrise.data.database.AlarmDatabase.getDatabase(this@AlarmRingingActivity)
-                val alarm = database.alarmDao().getAlarmById(alarmId)
-
-                if (alarm != null) {
-                    val disabledAlarm = alarm.copy(isEnabled = false)
-                    database.alarmDao().updateAlarm(disabledAlarm)
-
-                    val scheduler = com.example.android.tvz.hr.mrrise.utils.AlarmScheduler(this@AlarmRingingActivity)
-                    scheduler.cancelAlarm(disabledAlarm)
-                }
-            }
-        }
-
-        finish()
     }
 
     override fun onRequestPermissionsResult(

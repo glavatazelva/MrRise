@@ -9,12 +9,10 @@ class QRTestActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Try to inflate the puzzle_qr_code layout directly as the main view
         try {
             setContentView(R.layout.puzzle_qr_code)
             Toast.makeText(this, "QR Layout loaded!", Toast.LENGTH_SHORT).show()
 
-            // Try to find the button
             val button = findViewById<android.widget.Button>(R.id.btnScanQR)
             if (button != null) {
                 Toast.makeText(this, "Button found!", Toast.LENGTH_SHORT).show()
